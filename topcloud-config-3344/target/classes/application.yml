@@ -1,0 +1,15 @@
+server:
+  port: 3344
+  
+spring:
+  application:
+    name: topcloud-config
+  cloud:
+    config:
+      server:
+        git:
+          uri: https://github.com/yuxin1022/topcloud-config.git
+          search-paths: config-repo
+          username: #用户名
+          password: #密码
+        

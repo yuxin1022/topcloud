@@ -1,0 +1,4 @@
+com\topcloud\pojo\Dept.class
+com\topcloud\service\DeptClientService.class
+com\topcloud\service\DeptClientServiceFallbackFactory$1.class
+com\topcloud\service\DeptClientServiceFallbackFactory.class

@@ -1,0 +1,401 @@
+com.topxin.topcloud
+
+运行项目（node、npm）
+npm install
+npm run dev
+
+	npm install --global vue-cli 下载vue-cli脚手架
+
+	vue init webpack my-project 生成项目，形成基本结构
+	
+	cd my-project
+
+	npm install 依赖包
+
+	npm run dev 运行
+
+maven
+	Project父工程	Module子模块
+	清理clean---》编译
+
+	约定 > 配置 > 编码
+	
+	mvn isntall clean
+
+通信
+
+
+SpringBoot
+
+	2.2版本新特性
+	
+	延迟加载：在Spirng框架中已经有延迟加载的功能的，简单来说就是一个类的实例化，不需要spring容器启动的时候就开始实例化
+	而是在第一次需要它的时候再实例化，这样可以提升程序启动速度，也在一定程序上节省了系统资源
+
+		<bean id="testBean" calss="cn.javastack.TestBean" lazy-init="true" />	
+
+		@Lazy
+		public TestBean testBean() {
+   			return new TestBean();
+		}
+
+
+SpringCloud
+
+官网			https://spring.io/projects/spring-cloud		
+API稳定			https://springcloud.cc/spring-cloud-dalston.html
+SpringCloud中文社区		http://springcloud.cn/
+SpringCloud中文网		https://springcloud.cc/
+
+SpringCloud（分布式微服务架构的一站式解决方案，是各个微服务架构地技术的集合体，微服务全家桶）（21种++）
+
+	springboot--->1.5.9.RELEASE	springcloud--->Dalston.SR1
+
+	7001---》8001
+
+	什么是微服务
+
+		马丁福勒（原论文阅读）---》就目前而言，对微服务业界没有一个统一的、标准的定义
+		1）【拆分】将单一的应用程序划分成一组小的服务【单个应用】
+		2）【独立进程】每个服务运行自己的独立【进程】（小而独立）
+		3）【轻量级通信】（Dubbo ---》RPC）SpringCloud （HTTP协议 ---》RESTful API）轻量级通信机制互相沟通
+		4）【独立数据库】全自动部署、使用不同的数据库（application databases）
+
+		耦合（解耦、分流）。。。按业务拆分、按技术拆分。。。（各自微小的进程，让专业的人专业的模块，来做专业的事情）--》独立部署
+
+		猪八戒、华为、阿里云
+		
+		开发过程和部署过程都是独立的
+
+		1）前后端分离（只需管理后端、给前端工程师（H5）按照约定Rest地址+输入参数格式和报文的约定+输出参数）
+		2）全栈工程师HS+javaEE+
+
+	微服务优点和缺点
+		
+		优点
+		1）微服务只是业务逻辑代码，不会和HTML，CSS或其他界面组件混合
+		2）每个微服务都有自己的存储能力，可以有自己的数据库，也可以用统一的数据库（灵活搭配）
+
+		缺点
+		分布式系统的复杂性
+		系统部署依赖
+		服务间通讯成本
+		数据的一致性（分布式事务）
+		系统集成测试
+		性能监控		
+
+	微服务和微服务架构
+
+		微服务（科室---牙科、骨科）单个应用---》完成---》相应当个功能
+		
+		微服务架构（The new architectural style）
+		small service、own process、lightweight mechanisms、independenly deployable
+		
+	微服务技术栈：多技术的集合体
+
+		需要哪些【维度】？（E时代数字化生活（雷布斯、MI、生态）---》手机、电脑、路由器、充电宝。。。）
+
+		服务开发				Springboot、Spring、SpringMVC
+		服务配置与管理			Netflix公司的Archaius、阿里的Diamond		
+		服务注册与发现			Eureka、Consul、Zookeeper
+		服务调用				Rest、RPC、gRPC
+		服务熔断器			Hystrix、Envoy				
+		服务负载均衡			Ribbon、Nginx		
+		服务接口调用（客户端调用服务简化工作）	Feign
+		消息队列				Kafka、RabbitMQ、ActiveMQ
+		服务配置中心管理			SpringConfig、Chef
+		服务路由（API网关）			Zuul
+		全链路追踪			Zipkin，Brave、Dapper
+		服务部署				Docker、OpenStack、Kubernetes
+		事件消息总栈			Spirng Cloud Bus
+
+	为什么选择SpirngCloud
+
+		选择依据：整体解决方案和框架成熟的、社区热度、可维护性、学习曲线   	
+		阿里Dubbo/HSF、京东JSF、新浪微博Motan、当当网DubboX	
+
+	SpringCloud和Dubbo的区别
+		
+		1）活跃度（社区支持与更新力度）
+		2）Dubbo用RPC通信，SpringCloud用HTTP的REST方式
+		3）Dubbo的定位始终是一款RPC框架，而SpringCloud的 目标是微服务架构的一站式解决方案
+
+		服务注册中心	Zookeeper	Eureka
+		服务调用方式	RPC		REST API
+		服务监控		Dubbo Monitor	Spring Boot Admin		
+		断路器		不完善		Spirng Cloud Netflix Hystrix
+		服务网关				Spirng Cloud Netfilx Zuul
+		分布式配置			Spirng Cloud Config
+		服务跟踪				Spring Cloud Sleuth
+		消息总线				Spirng Cloud Bus
+		数据流				Spirng Cloud Stream
+		批量任务				Spirng Cloud Task
+				
+
+	SpringBoot和SpringCloud，怎么理解
+	
+		1）SpinrgBoot专注于快速方便的开发单个个体微服务
+		2）SpringCloud是专注于全局的微服务协调整理治理框架，它将SpirngBoot开发的一个个单体微服务合并管理起来
+		     为各个微服务提供，配置管理、服务发现、断路器、路由、微代理、事件总线、全局锁、决策竞选、分布式会话等集成微服务
+		3）Spring Boot可以离开SpringCloud独立使用开发项目   但SpirngCloud离不开Springboot，属于依赖关系
+		4）Spring Boot专注于快速、方便的单个微服务个体，SpirngCloud关注全局微服务治理框架
+
+	Rest微服务构建案例工程模块
+
+		1）RestTemplate
+		提供了多种编辑访问远程Http服务的方法
+		是一种简单便捷的访问restful服务模板类，是spring提供的用于访问Rest服务的【客户端模板】工具集
+
+		url，requestMap，ResponseBean.class 分别是 REST请求地址、请求参数、HTTP想要转换被转换成对象的类型
+
+	如何新增一个springcloud的心组件
+
+		1）新增一个相关的maven坐标
+		2）配置application.yml
+		3）在主启动类上面，标注的启动该新组件技术的相关部件标签
+		4）java业务逻辑代码
+
+	Eureka（service registry服务注册与发现
+
+		【服务的注册和发现】
+		只需要你使用服务的标识符，就可以访问到服务
+		功能类似Dubbo注册中心
+
+		Eureka采用C-S的设计架构 Eureka Server作为服务注册功能的服务器，他是服务注册中心
+		使用Eureka Client的客户端连接到 Eureka Server维持心跳
+		俩个组件Eureka Client客户端、 Eureka Server服务端
+
+	Eureka自我保护机制
+		
+		服务变更、长时间没有范文该服务、调用超时、没有收到某个微服务的【实例心跳】---》自我保护机制（默认90）
+		某一时刻一个微服务不可用了，eureka不会立刻清理，依旧会对该服务的信息进行保存（先不注销该服务）
+		当网络故障恢复（心跳恢复到阀值以上）之后，恢复服务管理	
+
+	Eureka集群配置
+		
+		tomcat集群、redis集群、zookeeper集群、mysql集群。。。高可用
+		域名映射
+		C:\Windows\System32\drivers\etc ---》hosts
+		127.0.0.1 euraka7001.com
+		127.0.0.1 euraka7002.com
+		127.0.0.1 euraka7003.com	
+	
+	GAP
+		
+		RDBMS(mysql/oracle/sqlserver)ACID
+		
+		原子性
+		一致性
+		独立性Isolation
+		持久性Durability
+	
+		NOSQL(redis/mongdb) ===>CAP
+
+		强一致性	   Consistency
+		可用性	   Availability
+		分区容错性   Partition tolerance
+
+	Eureka【AP】
+		
+		弱一致性	
+		各节点平等，只要有台服务能保证可用，但可能不是最新的
+		
+	Zookeeper【CP】
+
+		强一致性（网站、双11）
+		当maste节点由于网络故障，与其他节点失去联系，其他节点选举leader期间时间太长，且选举期间zk集群不可用，导致注册服务瘫痪
+
+	actuator监控信息配置
+
+	Discovery服务发现
+		
+		对外提供一个接口，暴露info信息
+
+	Ribbon（Load Balancer 简称LB）
+
+		基于Netflix ribbon实现的一套【客户端】的【负载均衡的工具】
+		重要功能提供---》客户端的软件负载均衡算法
+		常用的负债均衡：Nginx、LVS、硬件F5
+		中间件：Dubbo、SpringCloud负载均衡算法可以自定义
+		集中式LB（策略）
+		进程内LB（自己选）
+
+		完成真正的通过微服务名字从eureka找到并访问
+
+		Ribbon软负载均衡客户端组件
+		可以和其他需求的客户结合使用，和eureka结合只是其中的一个实例（默认使用轮询算法）
+
+	Ribbon核心主件IRule
+
+		com.netflix.loadbalancer.RoundRobinRule		轮询（默认）
+		com.netflix.loadbalancer.RandomRule		随机
+		
+		com.netflix.loadbalancer.AvailabilityFilteringRule
+		com.netflix.loadbalancer.WeightedResponseTimeRule
+		
+		com.netflix.loadbalancer.RetryRule	先按RoundRobinRule轮询算法获取服务，如果失败则指定时间内进行重试
+
+		com.netflix.loadbalancer.BestAvailableRule
+		com.netflix.loadbalancer.ZoneAvoidanceRule		
+
+	Feign负载均衡（web sevice client）支持JAX-RS标准的注解
+
+		【声明式】的Web服务客户端，使得Web服务客户端变得非常容易
+		只需要创建一个【接口】，然后在上面添加上【注解】即可
+
+		Ribbon很强大，可以自定义算法，大家目前习惯面向接口编程（WebService、dao），适应社区---》Feign
+
+	Hystrix断路器（breaker dashboard）（保险丝）
+	
+		分布式程序可能出现的问题：扇出、异常（系统崩溃）、超时、延时、调用失败
+		
+		Hystrix是一个处理分布式系统的【延迟】和【容错】的开源库
+		在一个依赖问题出现的情况下，【不会】导致整个服务失败，避免级联故障（蔓延、雪崩）、以提高分布上系统的弹性
+		向调用方返回一个符合预期的、可处理的相应（FallBack），而不是长时间的等待或者抛出异常或者抛出调用方无法处理的异常
+
+	服务熔断
+		
+		服务故障、或者异常抛出
+		熔断机制是对应雪崩效应的一种服务链路保护机制
+		当扇出链路的某个微服务不可用或者相应时间太长，会进行服务的降级，进而熔断该节点微服务的调用，快速返回“错误”的相应信息
+		@HystrixCommand
+
+	服务降级	Hystrix（在客户端处理，与服务端没有关系）
+	
+		整体资源不够了，忍痛将某些服务先关掉，待渡过难关、在开启回来
+		@Component
+		实现类---》FallbackFactory<interface接口>
+		让客户端知道服务器挂掉了
+	
+		Spring	AOP 主业务切面（解耦、避免方法共同站用）	 IOC 
+		
+		所谓降级，一般是conf整体复核考虑，当某个服务熔断后，服务器将不再被调用，此时客户端可以自己准备一个本地的fallback回调，
+		返回一个缺省值，这样做，虽然服务水平下降，好歹能用，比直接改掉要强。
+
+	服务监控	HystrixDashborad
+
+		除了隔离依赖服务的调用以外，Hystrix还提供了准实时的调用监控（Hystrix Dashboard),
+		Hystrix会持续的记录所有通过Hystrix发起的请求的执行信息，并统计报表和图形的形式展示给用户，包括每秒执行多少次清酒，多少成功，多少失败等。
+		Netflix通过Hystrix-metrics-event-stream项目实现了对以上指标的监控。
+		spring cloud 也提供了对Hystrix Dashboard的整合，对监控内容转化成【可视化的界面】
+		http://localhost:8001/hystrix.stream
+		7色1圈1线
+
+	Zuul（API Gateway）路由网关
+
+		包含了对请求的【路由】和【过滤】的主要功能
+		
+		路由功能	主要负责将外部请求转发到具体的微服务上，是实现外部访问入口的基础（安全）
+
+		过滤功能	负责对请求的处理过程进行干预，是实现请求校验、服务聚合等功能的基础
+
+		Zuul与Eureka进行整合，将Zuul自身注册为Eureka服务治理下的应用，同时从Eureka中获得其他微服务的信息，也即可以后的微服务
+		访问都是通过Zuul跳转后获得
+
+		代理真实微服务的名称，公共前缀，
+		http://myzuul.com:9527/topxin/mydept/dept/list
+
+	SpringCloudConfig（config dashboard）分布式配置中心
+
+		动态多种环节切换（换数据。。。）
+
+		可以有一个非常轻量级的集中式管理来协调这些服务
+
+		各微服务---》ConfigServer来解决微服务的配置问题（自己本身是一个分布式微服务，承上启下）
+		---》Local Git response---【】--》Remote Git response
+
+		SpringCloudConfig微服务架构中的微服务提供集中化的外部配置支持，配置服务器为各个不同微服务应用的所有环节提供了一个中心化得外部配置
+
+		1）集中管理配置文件
+		2）不同环境不同配置、动态化得配置更新，分环境部署
+		3）运行期间动态调整配置
+		4）当配置发生变换的时，不需要重启	
+		5）将配置信息以rest接口形式暴露
+		
+		与GitHub整合	
+
+	applacation.yml是用户级的
+	bootstrap.yml是系统级的，优先级更加高	
+
+	
+	面试问题	
+	
+		微服务之间是如何独立通讯的
+
+		什么是服务熔断？什么是服务降级
+	
+		微服务的优点分别是什么？项目中遇到的坑
+
+		微服务技术栈有哪些？
+
+		eureka和zookeeper都可以提供服务注册与发现的功能，有哪些区别
+
+
+	（distributed tracing）
+
+	（databaes）mysql
+
+
+Spring
+
+Spring用到的9个设计模式
+	
+	简单工厂（StaticFactory Mehtod）又叫静态工厂方法模式，不属于23种GOF设计模式
+	
+	工厂方法（Factory Method）定义一个用于创建对象的接口，让子类决定实例化哪一个类，
+
+	单例（Singleton）保证一个类仅有一个实例，并提供一个访问它的全局访问点。
+
+	适配器（Adapter）将一个类的接口转换成客户希望的另外一个接口。Adapter模式使得原本由于接口不兼容而不能一起工作的那些类可以一起工作。
+
+	包装器（Decorator）动态地给一个对象添加一些额外的职责。就增加功能来说，Decorator模式相比生成子类更为灵活。
+	
+	代理（Proxy）为其他对象提供一种代理以控制对这个对象的访问。
+	
+	观察者（Observer）定义对象间的一种一对多的依赖关系，当一个对象的状态发生改变时，所有依赖于它的对象都得到通知并被自动更新。
+	
+	策略（Strategy）定义一系列的算法，把它们一个个封装起来，并且使它们可相互替换。本模式使得算法可独立于使用它的客户而变化。
+	
+	模板方法（Template Method）定义一个操作中的算法骨架，而将一些步骤延迟到子类
+	Template Method使得子类可以不改变一个算法的结构即可重定义该算法的某些特定步骤。
+
+
+IOC 控制反转 Inversion of Control（DI dependency Injection 依赖注入）
+
+	IOC，就是由SpringIOC容器来辅助对象的生命周期和对象之间的关系
+
+	提升组件重用频率，并为系统搭建一个灵活、可扩展的平台
+		
+		应用依赖IOC容器
+		被注入对象依赖IoC容器配置依赖对象	
+
+
+IOC Service Provider
+
+	被注入的对象-------》IOC Service Provider《--------被依赖的对象
+	让别人（IOC Service Provider）为你服务（需要的对象不用自己拿，让IOC Service Provider去拿）
+
+	构造方法注入，stter方法注入、接口注入。
+
+
+APO动态代理
+
+
+Mybatis
+
+Mybatis的#{}和${}的区别
+
+	#{}在sql中表示一个占位符
+	#{}可以防止sql注入
+
+Tomcat
+
+启动分析（一）Lifecycle
+
+	Lifecycle是一个公用的接口，定义了组件生命周期的一些方法，用于启动Catalina组件
+	组件的生命周期包括init、start、stop、destory，以及各种事件的常量、操作LifecyListener的API，典型的观察者模式
+
+
+启动分析（二）Catalina初始化
+启动分析（三）Catalina启动
+启动分析（四）webapp                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                               
